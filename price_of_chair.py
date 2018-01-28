@@ -13,6 +13,13 @@ content = request.content
 soup = BeautifulSoup(content, "html.parser")
 element = soup.find("span", {"itemprop": "price", "class": "now-price"})
 #<span itemprop="price" class="now-price"> £129.00 </span>
+string_price = element.text.strip() #£129.00
 
-print(element.text.strip())
-#<span itemprop="price" class="now-price"> £129.00 </span>
+price_without_sign = string_price[1:]
+price = float(price_without_sign)
+
+if price <200:
+    print("Buy this chair!")
+    print("Current price is {}".format(price))
+else:
+    print("Do not buy this, it's to expensive")
